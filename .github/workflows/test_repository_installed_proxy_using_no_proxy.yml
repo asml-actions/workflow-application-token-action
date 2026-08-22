@@ -11,6 +11,9 @@ on:
         required: true
         default: main
 
+permissions:
+  contents: read
+
 jobs:
   test_no_proxy_ignored:
     runs-on: ubuntu-latest
@@ -30,13 +33,13 @@ jobs:
     steps:
       - name: Checkout specified branch
         if: github.event_name == 'workflow_dispatch'
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           ref: ${{ github.event.inputs.branch }}
 
       - name: Checkout
         if: github.event_name != 'workflow_dispatch'
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Start Squid Proxy container
         run: |
@@ -89,13 +92,13 @@ jobs:
     steps:
       - name: Checkout specified branch
         if: github.event_name == 'workflow_dispatch'
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           ref: ${{ github.event.inputs.branch }}
 
       - name: Checkout
         if: github.event_name != 'workflow_dispatch'
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Start Squid Proxy container
         run: |
